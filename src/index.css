@@ -17,12 +17,12 @@
     --popover: 0 0% 98%;
     --popover-foreground: 0 0% 15%;
 
-    /* Light orange accent colors */
-    --primary: 25 95% 68%; /* Light orange */
+    /* Neutral button colors */
+    --primary: 0 0% 20%; /* Dark gray for buttons */
     --primary-foreground: 0 0% 100%;
     --primary-glow: 25 95% 78%;
 
-    --secondary: 25 100% 95%; /* Very light orange */
+    --secondary: 0 0% 96%; /* Light gray */
     --secondary-foreground: 0 0% 15%;
 
     --muted: 0 0% 96%;
@@ -82,12 +82,12 @@
     --popover: 40 10% 15%;
     --popover-foreground: 60 29% 96%;
 
-    /* Dark mode accent colors */
-    --primary: 72 23% 65%;
-    --primary-foreground: 40 10% 12%;
+    /* Dark mode neutral button colors */
+    --primary: 0 0% 95%; /* Light for dark mode buttons */
+    --primary-foreground: 0 0% 10%;
     --primary-glow: 72 23% 75%;
 
-    --secondary: 60 34% 25%;
+    --secondary: 0 0% 20%; /* Dark gray */
     --secondary-foreground: 60 29% 96%;
 
     --muted: 60 34% 25%;
