@@ -18,7 +18,7 @@ const Login = () => {
     // Check if user is already logged in
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        navigate("/profile");
+        navigate("/");
       }
     });
   }, [navigate]);
@@ -61,7 +61,7 @@ const Login = () => {
 
       if (data.session) {
         toast.success("Welcome back!");
-        navigate("/profile");
+        navigate("/");
       }
     } catch (error) {
       toast.error("An unexpected error occurred");
