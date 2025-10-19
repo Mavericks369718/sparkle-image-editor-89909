@@ -40,7 +40,7 @@ const NanoHero = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <div className="space-y-8 animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground leading-tight">
+            <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground leading-tight">
               Discover the
               <br />
               <span className="text-primary">Next-Generation</span>
