@@ -16,7 +16,7 @@ const NanoNavbar = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="text-2xl font-bold text-foreground">
-            NanoPrompt <span className="text-primary">Trends</span>
+            NanoPrompt
           </div>
 
           {/* Desktop Navigation */}

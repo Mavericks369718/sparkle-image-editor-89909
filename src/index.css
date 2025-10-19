@@ -6,49 +6,49 @@
 
 @layer base {
   :root {
-    /* Soft minimalist color palette */
-    --background: 60 29% 96%; /* #FAF6F6 */
-    --foreground: 40 10% 20%;
+    /* Clean white minimalist palette with light orange accents */
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 0 0% 15%;
 
     /* Card and surface colors */
-    --card: 60 100% 98%; /* #FEFAE0 */
-    --card-foreground: 40 10% 20%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 15%;
 
-    --popover: 60 100% 98%;
-    --popover-foreground: 40 10% 20%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 15%;
 
-    /* Soft accent colors from palette */
-    --primary: 72 23% 75%; /* #CCD5AE */
-    --primary-foreground: 40 10% 20%;
-    --primary-glow: 72 23% 85%;
+    /* Light orange accent colors */
+    --primary: 25 95% 68%; /* Light orange */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 25 95% 78%;
 
-    --secondary: 60 34% 90%; /* #E9EDC9 */
-    --secondary-foreground: 40 10% 20%;
+    --secondary: 25 100% 95%; /* Very light orange */
+    --secondary-foreground: 0 0% 15%;
 
-    --muted: 60 34% 90%;
-    --muted-foreground: 40 10% 45%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 72 23% 75%;
-    --accent-foreground: 40 10% 20%;
+    --accent: 25 95% 68%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 60 100% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 72 23% 85%;
-    --input: 72 23% 85%;
-    --ring: 72 23% 65%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 25 95% 68%;
 
     --radius: 1rem;
 
-    /* Soft elegant gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(60 34% 90%), hsl(72 23% 75%));
-    --gradient-hero: linear-gradient(135deg, hsl(60 100% 98%), hsl(60 34% 90%), hsl(72 23% 85%));
-    --gradient-subtle: linear-gradient(180deg, hsl(60 100% 98%), hsl(60 29% 96%));
+    /* Clean gradients with light orange */
+    --gradient-primary: linear-gradient(135deg, hsl(25 100% 95%), hsl(25 95% 68%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%), hsl(25 100% 98%), hsl(25 100% 95%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
     
-    /* Minimal soft shadows */
-    --shadow-primary: 0 4px 20px -4px hsl(72 23% 75% / 0.15);
-    --shadow-glow: 0 2px 16px hsl(72 23% 75% / 0.1);
-    --shadow-card: 0 2px 12px -2px hsl(72 23% 85% / 0.2);
+    /* Minimal shadows */
+    --shadow-primary: 0 4px 20px -4px hsl(25 95% 68% / 0.2);
+    --shadow-glow: 0 2px 16px hsl(25 95% 68% / 0.15);
+    --shadow-card: 0 2px 12px -2px hsl(0 0% 0% / 0.08);
     
     /* Smooth animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
