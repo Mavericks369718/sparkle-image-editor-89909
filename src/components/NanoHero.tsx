@@ -35,11 +35,11 @@ const displayCardsData = [
 const NanoHero = () => {
 
   return (
-    <section className="min-h-screen pt-24 pb-20 bg-gradient-hero relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+    <section className="min-h-screen flex items-center justify-center bg-gradient-hero relative overflow-hidden">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center justify-items-center">
           {/* Text Content */}
-          <div className="space-y-8 animate-fade-in">
+          <div className="space-y-8 animate-fade-in max-w-xl mx-auto md:mx-0">
             <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground leading-tight">
               Discover the
               <br />
@@ -86,8 +86,10 @@ const NanoHero = () => {
           </div>
 
           {/* Display Cards */}
-          <div className="relative flex items-center justify-center animate-fade-in scale-75" style={{ animationDelay: '0.3s' }}>
-            <DisplayCards cards={displayCardsData} />
+          <div className="relative flex items-center justify-center animate-fade-in w-full" style={{ animationDelay: '0.3s' }}>
+            <div className="scale-75 md:scale-90 lg:scale-100">
+              <DisplayCards cards={displayCardsData} />
+            </div>
           </div>
         </div>
       </div>
