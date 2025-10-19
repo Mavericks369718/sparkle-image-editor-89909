@@ -1,9 +1,18 @@
 import { useState } from "react";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import { Moon, Sun, Settings, User, LogOut, CreditCard, HelpCircle, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Progress } from "@/components/ui/progress";
 
 const NanoNavbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
   const toggleDarkMode = () => {
@@ -41,9 +50,72 @@ const NanoNavbar = () => {
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
-            <Button variant="default" className="rounded-full">
-              Sign in with Google
-            </Button>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" />
+                    <AvatarFallback>NP</AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80">
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex items-center gap-3 pb-2">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" />
+                      <AvatarFallback>NP</AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col">
+                      <p className="text-sm font-semibold">NanoPrompt User</p>
+                      <p className="text-xs text-muted-foreground">user@nanoprompt.com</p>
+                    </div>
+                  </div>
+                </DropdownMenuLabel>
+                
+                <DropdownMenuSeparator />
+                
+                <div className="px-2 py-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium">Credits</span>
+                    <span className="text-sm text-muted-foreground">8.6 left</span>
+                  </div>
+                  <Progress value={43} className="h-2" />
+                  <p className="text-xs text-muted-foreground mt-2">Daily credits reset at midnight UTC</p>
+                </div>
+                
+                <DropdownMenuSeparator />
+                
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <User className="mr-2 h-4 w-4" />
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <CreditCard className="mr-2 h-4 w-4" />
+                  Get free credits
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <HelpCircle className="mr-2 h-4 w-4" />
+                  Help Center
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Palette className="mr-2 h-4 w-4" />
+                  Appearance
+                </DropdownMenuItem>
+                
+                <DropdownMenuSeparator />
+                
+                <DropdownMenuItem>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           {/* Mobile Menu Button */}
@@ -56,51 +128,74 @@ const NanoNavbar = () => {
             >
               {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-foreground p-2"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" />
+                    <AvatarFallback>NP</AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80">
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex items-center gap-3 pb-2">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" />
+                      <AvatarFallback>NP</AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col">
+                      <p className="text-sm font-semibold">NanoPrompt User</p>
+                      <p className="text-xs text-muted-foreground">user@nanoprompt.com</p>
+                    </div>
+                  </div>
+                </DropdownMenuLabel>
+                
+                <DropdownMenuSeparator />
+                
+                <div className="px-2 py-3">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium">Credits</span>
+                    <span className="text-sm text-muted-foreground">8.6 left</span>
+                  </div>
+                  <Progress value={43} className="h-2" />
+                  <p className="text-xs text-muted-foreground mt-2">Daily credits reset at midnight UTC</p>
+                </div>
+                
+                <DropdownMenuSeparator />
+                
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  Settings
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <User className="mr-2 h-4 w-4" />
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <CreditCard className="mr-2 h-4 w-4" />
+                  Get free credits
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <HelpCircle className="mr-2 h-4 w-4" />
+                  Help Center
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Palette className="mr-2 h-4 w-4" />
+                  Appearance
+                </DropdownMenuItem>
+                
+                <DropdownMenuSeparator />
+                
+                <DropdownMenuItem>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-4 animate-fade-in">
-            <a
-              href="#trends"
-              className="block text-foreground/70 hover:text-foreground transition-smooth"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Trends
-            </a>
-            <a
-              href="#prompts"
-              className="block text-foreground/70 hover:text-foreground transition-smooth"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Prompts
-            </a>
-            <a
-              href="#community"
-              className="block text-foreground/70 hover:text-foreground transition-smooth"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Community
-            </a>
-            <a
-              href="#about"
-              className="block text-foreground/70 hover:text-foreground transition-smooth"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              About
-            </a>
-            <Button variant="default" className="w-full rounded-full">
-              Sign in with Google
-            </Button>
-          </div>
-        )}
       </div>
     </nav>
   );
