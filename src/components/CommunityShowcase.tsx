@@ -3,37 +3,37 @@ import { CircularTestimonials } from '@/components/ui/circular-testimonials';
 const testimonials = [
   {
     quote:
-      "This platform revolutionized how I create AI-generated images. The prompts are incredibly creative and the results are stunning every single time!",
+      "NanoPrompt transformed my creative workflow. The AI prompts are perfectly crafted and save me hours of experimentation!",
     name: "Sarah Mitchell",
-    designation: "Digital Artist",
-    src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1368&auto=format&fit=crop",
+    designation: "AI Artist & Designer",
+    src: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=800&auto=format&fit=crop",
   },
   {
     quote:
-      "I've never seen such a diverse collection of AI prompts. The community is amazing and the quality of outputs is consistently impressive!",
+      "Best collection of AI prompts I've found. The trending section keeps me inspired and the results are always impressive.",
     name: "Marcus Chen",
     designation: "Creative Director",
-    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1368&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
   },
   {
     quote:
-      "NanoPrompt has become my go-to resource for AI image generation. The trending prompts inspire me daily and help me push creative boundaries.",
+      "Game changer for content creation! The prompt library is extensive and the community showcases incredible possibilities.",
     name: "Elena Rodriguez",
-    designation: "Content Creator",
-    src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1368&auto=format&fit=crop",
+    designation: "Digital Content Creator",
+    src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
 const CommunityShowcase = () => {
   return (
-    <section className="py-24 bg-gradient-subtle">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl font-display font-bold text-foreground mb-4">
+    <section className="py-12 sm:py-16 md:py-24 bg-gradient-subtle">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16 animate-fade-in">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-foreground mb-3 sm:mb-4">
             Loved by Creators
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Join thousands of artists and creators who trust NanoPrompt for their AI image generation needs
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-4">
+            Join thousands of artists who use NanoPrompt daily
           </p>
         </div>
 
@@ -42,9 +42,9 @@ const CommunityShowcase = () => {
             testimonials={testimonials}
             autoplay={true}
             fontSizes={{
-              name: "28px",
-              designation: "18px",
-              quote: "18px",
+              name: "20px",
+              designation: "14px",
+              quote: "16px",
             }}
           />
         </div>

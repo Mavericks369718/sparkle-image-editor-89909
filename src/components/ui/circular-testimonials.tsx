@@ -169,11 +169,11 @@ export const CircularTestimonials = ({
   };
 
   return (
-    <div className="w-full max-w-4xl p-8">
-      <div className="grid gap-20 md:grid-cols-2">
+    <div className="w-full max-w-4xl px-4 sm:px-8">
+      <div className="grid gap-8 md:gap-20 md:grid-cols-2">
         {/* Images */}
         <div 
-          className="relative w-full h-96 perspective-1000"
+          className="relative w-full h-64 sm:h-80 md:h-96 order-2 md:order-1"
           ref={imageContainerRef}
           style={{ perspective: '1000px' }}
         >
@@ -190,7 +190,7 @@ export const CircularTestimonials = ({
         </div>
 
         {/* Content */}
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between order-1 md:order-2">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -201,19 +201,19 @@ export const CircularTestimonials = ({
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <h3
-                className="font-bold mb-1"
+                className="font-bold mb-1 text-xl sm:text-2xl"
                 style={{ color: colorName, fontSize: fontSizeName }}
               >
                 {activeTestimonial.name}
               </h3>
               <p
-                className="mb-8"
+                className="mb-4 sm:mb-8 text-sm sm:text-base"
                 style={{ color: colorDesignation, fontSize: fontSizeDesignation }}
               >
                 {activeTestimonial.designation}
               </p>
               <motion.p
-                className="leading-relaxed"
+                className="leading-relaxed text-sm sm:text-base md:text-lg"
                 style={{ color: colorTestimony, fontSize: fontSizeQuote }}
               >
                 {activeTestimonial.quote.split(" ").map((word, i) => (
@@ -243,9 +243,9 @@ export const CircularTestimonials = ({
             </motion.div>
           </AnimatePresence>
 
-          <div className="flex gap-6 pt-12 md:pt-0">
+          <div className="flex gap-3 sm:gap-6 pt-6 sm:pt-12 md:pt-0">
             <button
-              className="w-11 h-11 rounded-full flex items-center justify-center cursor-pointer transition-colors border-none"
+              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center cursor-pointer transition-colors border-none"
               onClick={handlePrev}
               style={{
                 backgroundColor: hoverPrev ? colorArrowHoverBg : colorArrowBg,
@@ -254,10 +254,10 @@ export const CircularTestimonials = ({
               onMouseLeave={() => setHoverPrev(false)}
               aria-label="Previous testimonial"
             >
-              <ArrowLeft size={28} color={colorArrowFg} />
+              <ArrowLeft size={20} color={colorArrowFg} className="sm:w-7 sm:h-7" />
             </button>
             <button
-              className="w-11 h-11 rounded-full flex items-center justify-center cursor-pointer transition-colors border-none"
+              className="w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center cursor-pointer transition-colors border-none"
               onClick={handleNext}
               style={{
                 backgroundColor: hoverNext ? colorArrowHoverBg : colorArrowBg,
@@ -266,7 +266,7 @@ export const CircularTestimonials = ({
               onMouseLeave={() => setHoverNext(false)}
               aria-label="Next testimonial"
             >
-              <ArrowRight size={28} color={colorArrowFg} />
+              <ArrowRight size={20} color={colorArrowFg} className="sm:w-7 sm:h-7" />
             </button>
           </div>
         </div>
