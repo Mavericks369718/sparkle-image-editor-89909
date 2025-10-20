@@ -63,7 +63,7 @@ const Gallery = () => {
       <main className="pt-24 pb-12">
         <div className="container mx-auto px-4 sm:px-6">
           {/* Header with Toggle Buttons */}
-          <div className="sticky top-20 z-40 bg-background/95 backdrop-blur-lg pb-6 mb-8">
+          <div className="pb-6 mb-8">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 text-center">
               Explore Gallery
             </h1>
