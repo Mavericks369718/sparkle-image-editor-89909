@@ -182,145 +182,142 @@ const Gallery = () => {
 
       {/* Pinterest-style Image Detail Modal */}
       <Dialog open={!!selectedImage} onOpenChange={handleCloseModal}>
-        <DialogContent className="max-w-[95vw] md:max-w-7xl h-[95vh] p-0 gap-0 bg-background overflow-hidden">
-          <div className="relative w-full h-full flex flex-col md:flex-row">
+        <DialogContent className="max-w-[95vw] md:max-w-4xl max-h-[95vh] p-0 gap-0 bg-background">
+          <div className="relative w-full h-full flex flex-col overflow-y-auto">
             {/* Close Button */}
             <button
               onClick={handleCloseModal}
-              className="absolute top-4 left-4 z-50 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-muted transition-colors flex items-center justify-center"
+              className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-muted transition-colors flex items-center justify-center"
             >
               <X className="w-4 h-4" />
             </button>
 
-            {/* Main Content Area */}
-            <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-              {!showUpload ? (
-                <>
-                  {/* Image Container */}
-                  <div className="flex-1 flex items-center justify-center p-4 md:p-8 pt-16 md:pt-20 overflow-auto">
-                    <img
-                      src={selectedImage?.url}
-                      alt={selectedImage?.prompt}
-                      className="max-w-full max-h-full object-contain rounded-xl"
-                    />
-                  </div>
-
-                  {/* Action Bar - Bottom */}
-                  <div className="border-t border-border bg-background p-4 shrink-0">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-3 md:gap-4">
-                        <button
-                          onClick={handleLike}
-                          className="flex items-center gap-2 hover:opacity-70 transition-opacity"
-                        >
-                          <Heart
-                            className={cn(
-                              "w-5 h-5",
-                              isLiked ? "fill-red-500 text-red-500" : "text-foreground"
-                            )}
-                          />
-                          <span className="font-semibold text-sm">{likes}</span>
-                        </button>
-
-                        <button className="flex items-center gap-2 hover:opacity-70 transition-opacity">
-                          <MessageCircle className="w-5 h-5" />
-                          <span className="font-semibold text-sm">1</span>
-                        </button>
-
-                        <button className="flex items-center gap-2 hover:opacity-70 transition-opacity">
-                          <Share2 className="w-5 h-5" />
-                        </button>
-                      </div>
-
-                      <Button
-                        onClick={handleUseThis}
-                        className="rounded-full px-4 md:px-6"
-                        size="sm"
-                      >
-                        Use this
-                      </Button>
-                    </div>
-
-                    <div className="mt-3">
-                      <p className="text-xs md:text-sm text-muted-foreground line-clamp-2">{selectedImage?.prompt}</p>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <div className="flex-1 flex items-center justify-center p-4 md:p-6 overflow-auto">
-                  <div className="w-full max-w-2xl space-y-6">
-                    <div className="text-center mb-6">
-                      <h3 className="text-xl md:text-2xl font-bold mb-2">Upload Your Image</h3>
-                      <p className="text-sm md:text-base text-muted-foreground">
-                        Upload your image to generate a version inspired by this style
-                      </p>
-                    </div>
-
-                    <div className="border-2 border-dashed border-border rounded-xl p-8 md:p-12 text-center hover:border-primary transition-colors cursor-pointer bg-muted/20">
-                      <input
-                        type="file"
-                        id="image-upload"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={handleFileChange}
-                      />
-                      <label htmlFor="image-upload" className="cursor-pointer">
-                        <Upload className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 text-muted-foreground" />
-                        <p className="text-foreground font-medium text-base md:text-lg mb-2">
-                          {uploadedFile ? uploadedFile.name : "Click to upload your image"}
-                        </p>
-                        <p className="text-sm text-muted-foreground">
-                          PNG, JPG up to 10MB
-                        </p>
-                      </label>
-                    </div>
-
-                    <div className="text-sm text-muted-foreground bg-muted/50 p-4 rounded-xl">
-                      <p className="font-medium text-foreground mb-2">Inspiration Prompt:</p>
-                      <p className="italic">{selectedImage?.prompt}</p>
-                    </div>
-
-                    <div className="flex gap-3">
-                      <Button
-                        onClick={() => setShowUpload(false)}
-                        variant="outline"
-                        className="flex-1 rounded-full"
-                        size="lg"
-                      >
-                        Back
-                      </Button>
-                      <Button className="flex-1 rounded-full" size="lg" disabled={!uploadedFile}>
-                        Generate with Nano Banana
-                      </Button>
-                    </div>
-                  </div>
+            {!showUpload ? (
+              <>
+                {/* Main Image */}
+                <div className="w-full flex items-center justify-center p-6 md:p-8 pt-16 md:pt-20">
+                  <img
+                    src={selectedImage?.url}
+                    alt={selectedImage?.prompt}
+                    className="max-w-full max-h-[60vh] object-contain rounded-xl"
+                  />
                 </div>
-              )}
-            </div>
 
-            {/* Similar Images Sidebar */}
-            {!showUpload && selectedImage && (
-              <div className="w-full md:w-72 lg:w-80 h-64 md:h-full border-t md:border-t-0 md:border-l border-border overflow-y-auto shrink-0">
-                <div className="p-4 border-b border-border sticky top-0 bg-background z-10">
-                  <h3 className="text-sm md:text-base font-semibold">More like this</h3>
-                </div>
-                <div className="p-3 space-y-2">
-                  {galleryImages
-                    .filter(img => img.id !== selectedImage.id && img.category === selectedImage.category)
-                    .map((image) => (
-                      <div
-                        key={image.id}
-                        className="relative rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
-                        onClick={() => setSelectedImage(image)}
+                {/* Action Bar */}
+                <div className="border-t border-border bg-background px-6 py-4">
+                  <div className="flex items-center justify-between gap-4 mb-3">
+                    <div className="flex items-center gap-3 md:gap-4">
+                      <button
+                        onClick={handleLike}
+                        className="flex items-center gap-2 hover:opacity-70 transition-opacity"
                       >
-                        <img
-                          src={image.url}
-                          alt={image.prompt}
-                          className="w-full h-auto object-cover"
-                          loading="lazy"
+                        <Heart
+                          className={cn(
+                            "w-5 h-5",
+                            isLiked ? "fill-red-500 text-red-500" : "text-foreground"
+                          )}
                         />
-                      </div>
-                    ))}
+                        <span className="font-semibold text-sm">{likes}</span>
+                      </button>
+
+                      <button className="flex items-center gap-2 hover:opacity-70 transition-opacity">
+                        <MessageCircle className="w-5 h-5" />
+                        <span className="font-semibold text-sm">1</span>
+                      </button>
+
+                      <button className="flex items-center gap-2 hover:opacity-70 transition-opacity">
+                        <Share2 className="w-5 h-5" />
+                      </button>
+                    </div>
+
+                    <Button
+                      onClick={handleUseThis}
+                      className="rounded-full px-4 md:px-6"
+                      size="sm"
+                    >
+                      Use this
+                    </Button>
+                  </div>
+
+                  <p className="text-xs md:text-sm text-muted-foreground">{selectedImage?.prompt}</p>
+                </div>
+
+                {/* Similar Images - Horizontal Scrollable Gallery */}
+                {selectedImage && (
+                  <div className="border-t border-border bg-background px-6 py-6">
+                    <h3 className="text-base font-semibold mb-4">More like this</h3>
+                    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                      {galleryImages
+                        .filter(img => img.id !== selectedImage.id && img.category === selectedImage.category)
+                        .map((image) => (
+                          <div
+                            key={image.id}
+                            className="flex-shrink-0 w-32 md:w-40 rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
+                            onClick={() => {
+                              setSelectedImage(image);
+                              setIsLiked(false);
+                              setLikes(156);
+                            }}
+                          >
+                            <img
+                              src={image.url}
+                              alt={image.prompt}
+                              className="w-full h-auto object-cover"
+                              loading="lazy"
+                            />
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="flex-1 flex items-center justify-center p-6 md:p-8">
+                <div className="w-full max-w-2xl space-y-6">
+                  <div className="text-center mb-6">
+                    <h3 className="text-xl md:text-2xl font-bold mb-2">Upload Your Image</h3>
+                    <p className="text-sm md:text-base text-muted-foreground">
+                      Upload your image to generate a version inspired by this style
+                    </p>
+                  </div>
+
+                  <div className="border-2 border-dashed border-border rounded-xl p-8 md:p-12 text-center hover:border-primary transition-colors cursor-pointer bg-muted/20">
+                    <input
+                      type="file"
+                      id="image-upload"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={handleFileChange}
+                    />
+                    <label htmlFor="image-upload" className="cursor-pointer">
+                      <Upload className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 text-muted-foreground" />
+                      <p className="text-foreground font-medium text-base md:text-lg mb-2">
+                        {uploadedFile ? uploadedFile.name : "Click to upload your image"}
+                      </p>
+                      <p className="text-sm text-muted-foreground">
+                        PNG, JPG up to 10MB
+                      </p>
+                    </label>
+                  </div>
+
+                  <div className="text-sm text-muted-foreground bg-muted/50 p-4 rounded-xl">
+                    <p className="font-medium text-foreground mb-2">Inspiration Prompt:</p>
+                    <p className="italic">{selectedImage?.prompt}</p>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <Button
+                      onClick={() => setShowUpload(false)}
+                      variant="outline"
+                      className="flex-1 rounded-full"
+                      size="lg"
+                    >
+                      Back
+                    </Button>
+                    <Button className="flex-1 rounded-full" size="lg" disabled={!uploadedFile}>
+                      Generate with Nano Banana
+                    </Button>
+                  </div>
                 </div>
               </div>
             )}
