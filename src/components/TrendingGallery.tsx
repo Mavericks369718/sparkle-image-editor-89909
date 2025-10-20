@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Upload } from "lucide-react";
@@ -19,9 +20,14 @@ const galleryImages = [
 ];
 
 const TrendingGallery = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null);
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+
+  const handleCategoryClick = (category: string) => {
+    navigate(`/gallery?category=${category}`);
+  };
 
   const filteredImages = selectedCategory === "All" 
     ? galleryImages 
@@ -42,27 +48,13 @@ const TrendingGallery = () => {
             {categories.map((category) => (
               <button
                 key={category}
-                onClick={() => setSelectedCategory(category)}
+                onClick={() => handleCategoryClick(category)}
                 className={cn(
                   "relative cursor-pointer text-xs sm:text-sm font-semibold px-3 sm:px-6 py-2 rounded-full transition-all duration-300 whitespace-nowrap",
-                  selectedCategory === category
-                    ? "bg-primary text-primary-foreground shadow-lg"
-                    : "text-muted-foreground hover:text-foreground"
+                  "text-muted-foreground hover:text-foreground hover:bg-primary/10"
                 )}
               >
                 {category}
-                {selectedCategory === category && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-primary rounded-full -z-10"
-                    initial={false}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
-                    }}
-                  />
-                )}
               </button>
             ))}
           </div>
