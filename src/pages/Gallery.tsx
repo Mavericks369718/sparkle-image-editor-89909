@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, PanInfo } from "framer-motion";
 import { cn } from "@/lib/utils";
 import NanoNavbar from "@/components/NanoNavbar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -56,18 +56,39 @@ const Gallery = () => {
     }
   };
 
+  const handleSwipe = (offset: number) => {
+    const currentIndex = categories.indexOf(selectedCategory);
+    let newIndex;
+    
+    if (offset > 0 && currentIndex > 0) {
+      newIndex = currentIndex - 1;
+    } else if (offset < 0 && currentIndex < categories.length - 1) {
+      newIndex = currentIndex + 1;
+    } else {
+      return;
+    }
+    
+    handleCategoryChange(categories[newIndex]);
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <NanoNavbar />
       
-      <main className="pt-24 pb-12">
-        <div className="container mx-auto px-4 sm:px-6">
-          {/* Header with Toggle Buttons */}
-          <div className="pb-6 mb-8">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-6 text-center">
-              Explore Gallery
-            </h1>
-            
+      <main className="pt-20 pb-12">
+        <motion.div 
+          className="container mx-auto px-4 sm:px-6"
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.2}
+          onDragEnd={(e, info: PanInfo) => {
+            if (Math.abs(info.offset.x) > 50) {
+              handleSwipe(info.offset.x);
+            }
+          }}
+        >
+          {/* Toggle Buttons */}
+          <div className="pb-6 mb-6">
             <div className="flex justify-center">
               <div className="inline-flex items-center gap-1 sm:gap-2 bg-muted/50 border border-border backdrop-blur-lg py-1 px-1 rounded-full">
                 {categories.map((category) => (
@@ -130,7 +151,7 @@ const Gallery = () => {
               </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </main>
 
       {/* Upload Modal */}
