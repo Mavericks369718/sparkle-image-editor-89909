@@ -195,11 +195,11 @@ const Gallery = () => {
             {!showUpload ? (
               <>
                 {/* Main Image */}
-                <div className="w-full flex items-center justify-center p-6 md:p-8 pt-16 md:pt-20">
+                <div className="w-full flex items-center justify-center bg-muted/20">
                   <img
                     src={selectedImage?.url}
                     alt={selectedImage?.prompt}
-                    className="max-w-full max-h-[60vh] object-contain rounded-xl"
+                    className="w-full h-auto object-cover"
                   />
                 </div>
 
@@ -246,13 +246,14 @@ const Gallery = () => {
                 {selectedImage && (
                   <div className="border-t border-border bg-background px-6 py-6">
                     <h3 className="text-base font-semibold mb-4">More like this</h3>
-                    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+                    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory">
                       {galleryImages
-                        .filter(img => img.id !== selectedImage.id && img.category === selectedImage.category)
+                        .filter(img => img.category === selectedImage.category || img.category === "Trending")
+                        .slice(0, 20)
                         .map((image) => (
                           <div
                             key={image.id}
-                            className="flex-shrink-0 w-32 md:w-40 rounded-lg overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
+                            className="flex-shrink-0 w-40 md:w-48 lg:w-56 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform snap-start shadow-md hover:shadow-xl"
                             onClick={() => {
                               setSelectedImage(image);
                               setIsLiked(false);
