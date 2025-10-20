@@ -182,8 +182,8 @@ const Gallery = () => {
 
       {/* Pinterest-style Image Detail Modal */}
       <Dialog open={!!selectedImage} onOpenChange={handleCloseModal}>
-        <DialogContent className="max-w-7xl h-[90vh] p-0 gap-0 bg-background">
-          <div className="relative w-full h-full flex">
+        <DialogContent className="max-w-[95vw] md:max-w-7xl h-[95vh] p-0 gap-0 bg-background overflow-hidden">
+          <div className="relative w-full h-full flex flex-col md:flex-row">
             {/* Close Button */}
             <button
               onClick={handleCloseModal}
@@ -193,11 +193,11 @@ const Gallery = () => {
             </button>
 
             {/* Main Content Area */}
-            <div className="flex-1 flex flex-col overflow-hidden">
+            <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
               {!showUpload ? (
                 <>
                   {/* Image Container */}
-                  <div className="flex-1 flex items-center justify-center p-2 pt-16 pb-2">
+                  <div className="flex-1 flex items-center justify-center p-4 md:p-8 pt-16 md:pt-20 overflow-auto">
                     <img
                       src={selectedImage?.url}
                       alt={selectedImage?.prompt}
@@ -206,9 +206,9 @@ const Gallery = () => {
                   </div>
 
                   {/* Action Bar - Bottom */}
-                  <div className="border-t border-border bg-background p-3">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
+                  <div className="border-t border-border bg-background p-4 shrink-0">
+                    <div className="flex items-center justify-between gap-4">
+                      <div className="flex items-center gap-3 md:gap-4">
                         <button
                           onClick={handleLike}
                           className="flex items-center gap-2 hover:opacity-70 transition-opacity"
@@ -234,29 +234,29 @@ const Gallery = () => {
 
                       <Button
                         onClick={handleUseThis}
-                        className="rounded-full px-6"
+                        className="rounded-full px-4 md:px-6"
                         size="sm"
                       >
                         Use this
                       </Button>
                     </div>
 
-                    <div className="mt-2">
-                      <p className="text-xs text-muted-foreground">{selectedImage?.prompt}</p>
+                    <div className="mt-3">
+                      <p className="text-xs md:text-sm text-muted-foreground line-clamp-2">{selectedImage?.prompt}</p>
                     </div>
                   </div>
                 </>
               ) : (
-                <div className="flex-1 flex items-center justify-center p-6">
+                <div className="flex-1 flex items-center justify-center p-4 md:p-6 overflow-auto">
                   <div className="w-full max-w-2xl space-y-6">
                     <div className="text-center mb-6">
-                      <h3 className="text-2xl font-bold mb-2">Upload Your Image</h3>
-                      <p className="text-muted-foreground">
+                      <h3 className="text-xl md:text-2xl font-bold mb-2">Upload Your Image</h3>
+                      <p className="text-sm md:text-base text-muted-foreground">
                         Upload your image to generate a version inspired by this style
                       </p>
                     </div>
 
-                    <div className="border-2 border-dashed border-border rounded-xl p-12 text-center hover:border-primary transition-colors cursor-pointer bg-muted/20">
+                    <div className="border-2 border-dashed border-border rounded-xl p-8 md:p-12 text-center hover:border-primary transition-colors cursor-pointer bg-muted/20">
                       <input
                         type="file"
                         id="image-upload"
@@ -265,8 +265,8 @@ const Gallery = () => {
                         onChange={handleFileChange}
                       />
                       <label htmlFor="image-upload" className="cursor-pointer">
-                        <Upload className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
-                        <p className="text-foreground font-medium text-lg mb-2">
+                        <Upload className="w-12 h-12 md:w-16 md:h-16 mx-auto mb-4 text-muted-foreground" />
+                        <p className="text-foreground font-medium text-base md:text-lg mb-2">
                           {uploadedFile ? uploadedFile.name : "Click to upload your image"}
                         </p>
                         <p className="text-sm text-muted-foreground">
@@ -300,9 +300,9 @@ const Gallery = () => {
 
             {/* Similar Images Sidebar */}
             {!showUpload && selectedImage && (
-              <div className="w-72 md:w-80 border-l border-border overflow-y-auto">
+              <div className="w-full md:w-72 lg:w-80 h-64 md:h-full border-t md:border-t-0 md:border-l border-border overflow-y-auto shrink-0">
                 <div className="p-4 border-b border-border sticky top-0 bg-background z-10">
-                  <h3 className="text-base font-semibold">More like this</h3>
+                  <h3 className="text-sm md:text-base font-semibold">More like this</h3>
                 </div>
                 <div className="p-3 space-y-2">
                   {galleryImages
@@ -317,6 +317,7 @@ const Gallery = () => {
                           src={image.url}
                           alt={image.prompt}
                           className="w-full h-auto object-cover"
+                          loading="lazy"
                         />
                       </div>
                     ))}
