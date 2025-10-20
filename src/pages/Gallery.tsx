@@ -140,14 +140,14 @@ const Gallery = () => {
           </div>
 
           {/* Pinterest-style Masonry Grid */}
-          <div className="columns-2 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+          <div className="columns-2 sm:columns-2 lg:columns-3 xl:columns-4 gap-2 space-y-2">
             {filteredImages.map((image, index) => (
               <motion.div
                 key={image.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="break-inside-avoid mb-4"
+                className="break-inside-avoid mb-2"
               >
                 <div
                   className="group relative rounded-2xl overflow-hidden cursor-pointer shadow-card hover:shadow-primary transition-all duration-300 hover:scale-[1.02]"
@@ -162,9 +162,17 @@ const Gallery = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                     <p className="text-sm text-foreground font-medium">{image.prompt}</p>
                   </div>
-                  <div className="absolute top-3 right-3 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
-                    {image.category}
-                  </div>
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedImage(image);
+                      setShowUpload(true);
+                    }}
+                    className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity rounded-full px-4 py-2 text-xs font-semibold"
+                    size="sm"
+                  >
+                    Use this
+                  </Button>
                 </div>
               </motion.div>
             ))}
@@ -175,7 +183,7 @@ const Gallery = () => {
       {/* Pinterest-style Image Detail Modal */}
       <Dialog open={!!selectedImage} onOpenChange={handleCloseModal}>
         <DialogContent className="max-w-7xl h-[95vh] p-0 gap-0 bg-background">
-          <div className="relative w-full h-full flex flex-col">
+          <div className="relative w-full h-full flex flex-col lg:flex-row">
             {/* Close Button */}
             <button
               onClick={handleCloseModal}
@@ -184,17 +192,8 @@ const Gallery = () => {
               <X className="w-5 h-5" />
             </button>
 
-            {/* Use This Button - Top Right */}
-            {!showUpload && (
-              <Button
-                onClick={handleUseThis}
-                className="absolute top-4 right-4 z-50 rounded-full px-6"
-                size="lg"
-              >
-                Use this
-              </Button>
-            )}
 
+            {/* Main Content Area */}
             <div className="flex-1 flex items-center justify-center overflow-hidden p-4 pt-20">
               {!showUpload ? (
                 <img
@@ -287,6 +286,31 @@ const Gallery = () => {
 
                 <div className="mt-3 max-w-7xl mx-auto">
                   <p className="text-sm text-muted-foreground">{selectedImage?.prompt}</p>
+                </div>
+              </div>
+            )}
+
+            {/* Similar Images Sidebar */}
+            {!showUpload && selectedImage && (
+              <div className="hidden lg:block w-80 border-l border-border overflow-y-auto p-4">
+                <h3 className="text-lg font-semibold mb-4">More like this</h3>
+                <div className="space-y-3">
+                  {galleryImages
+                    .filter(img => img.id !== selectedImage.id && img.category === selectedImage.category)
+                    .slice(0, 8)
+                    .map((image) => (
+                      <div
+                        key={image.id}
+                        className="group relative rounded-xl overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
+                        onClick={() => setSelectedImage(image)}
+                      >
+                        <img
+                          src={image.url}
+                          alt={image.prompt}
+                          className="w-full h-auto object-cover"
+                        />
+                      </div>
+                    ))}
                 </div>
               </div>
             )}
