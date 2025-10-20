@@ -43,19 +43,6 @@ const TrendingGallery = () => {
           </p>
         </div>
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
-              onClick={() => setSelectedCategory(category)}
-              className="rounded-full transition-spring hover:scale-105"
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
 
         {/* Image Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
