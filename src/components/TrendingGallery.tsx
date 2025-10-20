@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Upload } from "lucide-react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const categories = ["All", "Portrait", "Landscape", "Fantasy", "Futuristic", "Fusion"];
 
@@ -34,9 +36,41 @@ const TrendingGallery = () => {
   return (
     <section id="trends" className="py-20 bg-background">
       <div className="container mx-auto px-6">
+        {/* Toggle Buttons */}
+        <div className="flex justify-center mb-6">
+          <div className="inline-flex items-center gap-2 bg-muted/50 border border-border backdrop-blur-lg py-1 px-1 rounded-full">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={cn(
+                  "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-all duration-300",
+                  selectedCategory === category
+                    ? "bg-primary text-primary-foreground shadow-lg"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {category}
+                {selectedCategory === category && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute inset-0 bg-primary rounded-full -z-10"
+                    initial={false}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Trending Gallery
+            Trending Now
           </h2>
           <p className="text-lg text-muted-foreground">
             Explore the latest AI-generated masterpieces
