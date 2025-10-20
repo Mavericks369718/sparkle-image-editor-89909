@@ -182,7 +182,7 @@ const Gallery = () => {
 
       {/* Pinterest-style Image Detail Modal */}
       <Dialog open={!!selectedImage} onOpenChange={handleCloseModal}>
-        <DialogContent className="max-w-[95vw] md:max-w-4xl max-h-[95vh] p-0 gap-0 bg-background">
+        <DialogContent className="max-w-[100vw] md:max-w-4xl h-[100vh] md:max-h-[95vh] p-0 gap-0 bg-background overflow-hidden">
           <div className="relative w-full h-full flex flex-col overflow-y-auto">
             {/* Close Button */}
             <button
@@ -195,11 +195,11 @@ const Gallery = () => {
             {!showUpload ? (
               <>
                 {/* Main Image */}
-                <div className="w-full flex items-center justify-center bg-muted/20">
+                <div className="w-full flex items-center justify-center bg-gradient-to-br from-muted/10 via-background to-muted/10 border-b border-border">
                   <img
                     src={selectedImage?.url}
                     alt={selectedImage?.prompt}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-cover max-h-[50vh] md:max-h-[60vh]"
                   />
                 </div>
 
@@ -244,16 +244,16 @@ const Gallery = () => {
 
                 {/* Similar Images - Horizontal Scrollable Gallery */}
                 {selectedImage && (
-                  <div className="border-t border-border bg-background px-6 py-6">
+                  <div className="border-t border-border bg-background px-4 md:px-6 py-6 pb-8">
                     <h3 className="text-base font-semibold mb-4">More like this</h3>
-                    <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory">
+                    <div className="flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'thin' }}>
                       {galleryImages
                         .filter(img => img.category === selectedImage.category || img.category === "Trending")
                         .slice(0, 20)
                         .map((image) => (
                           <div
                             key={image.id}
-                            className="flex-shrink-0 w-40 md:w-48 lg:w-56 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform snap-start shadow-md hover:shadow-xl"
+                            className="flex-shrink-0 w-40 md:w-48 lg:w-56 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform snap-start border-2 border-border/50 hover:border-primary/50 shadow-lg hover:shadow-2xl"
                             onClick={() => {
                               setSelectedImage(image);
                               setIsLiked(false);
