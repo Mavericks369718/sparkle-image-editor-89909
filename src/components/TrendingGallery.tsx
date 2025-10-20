@@ -5,17 +5,17 @@ import { Upload } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-const categories = ["All", "Portrait", "Landscape", "Fantasy", "Futuristic", "Fusion"];
+const categories = ["All", "Trending", "Male", "Female"];
 
 const galleryImages = [
-  { id: 1, category: "Portrait", url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500", prompt: "Ethereal portrait with soft lighting" },
-  { id: 2, category: "Landscape", url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500", prompt: "Dreamlike mountain landscape" },
-  { id: 3, category: "Fantasy", url: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=500", prompt: "Mystical forest with glowing elements" },
-  { id: 4, category: "Futuristic", url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500", prompt: "Cyberpunk cityscape at night" },
-  { id: 5, category: "Fusion", url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500", prompt: "Nature meets technology fusion" },
-  { id: 6, category: "Portrait", url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500", prompt: "Minimalist portrait with dramatic shadows" },
-  { id: 7, category: "Landscape", url: "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=500", prompt: "Serene coastal sunset" },
-  { id: 8, category: "Fantasy", url: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=500", prompt: "Starlit magical realm" },
+  { id: 1, category: "Male", url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500", prompt: "Professional male portrait" },
+  { id: 2, category: "Female", url: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500", prompt: "Ethereal portrait with soft lighting" },
+  { id: 3, category: "Trending", url: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=500", prompt: "Mystical forest with glowing elements" },
+  { id: 4, category: "Trending", url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500", prompt: "Cyberpunk cityscape at night" },
+  { id: 5, category: "Male", url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500", prompt: "Modern male portrait" },
+  { id: 6, category: "Female", url: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500", prompt: "Minimalist portrait with dramatic shadows" },
+  { id: 7, category: "Trending", url: "https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?w=500", prompt: "Serene coastal sunset" },
+  { id: 8, category: "Female", url: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500", prompt: "Elegant female portrait" },
 ];
 
 const TrendingGallery = () => {
@@ -37,14 +37,14 @@ const TrendingGallery = () => {
     <section id="trends" className="py-20 bg-background">
       <div className="container mx-auto px-6">
         {/* Toggle Buttons */}
-        <div className="flex justify-center mb-6">
-          <div className="inline-flex items-center gap-2 bg-muted/50 border border-border backdrop-blur-lg py-1 px-1 rounded-full">
+        <div className="flex justify-center mb-6 px-2">
+          <div className="inline-flex items-center gap-1 sm:gap-2 bg-muted/50 border border-border backdrop-blur-lg py-1 px-1 rounded-full">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
                 className={cn(
-                  "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-all duration-300",
+                  "relative cursor-pointer text-xs sm:text-sm font-semibold px-3 sm:px-6 py-2 rounded-full transition-all duration-300 whitespace-nowrap",
                   selectedCategory === category
                     ? "bg-primary text-primary-foreground shadow-lg"
                     : "text-muted-foreground hover:text-foreground"
